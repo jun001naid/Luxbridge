@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 let mediaRecorder;
 let audioChunks = [];
 let audioBlob = null;
+let nativeExtension = 'webm'; // Default for Chrome/Firefox
 let isRecording = false;
 
 async function toggleRecording() {
@@ -65,13 +66,20 @@ async function toggleRecording() {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             mediaRecorder = new MediaRecorder(stream);
             
+            // Detect if the browser is Safari (uses mp4) or Chrome (uses webm)
+            if (mediaRecorder.mimeType && mediaRecorder.mimeType.includes('mp4')) {
+                nativeExtension = 'mp4';
+            } else {
+                nativeExtension = 'webm';
+            }
+            
             mediaRecorder.ondataavailable = event => {
                 audioChunks.push(event.data);
             };
             
             mediaRecorder.onstop = () => {
-                // Packaging the audio as a generic MP4 audio file to bypass strict format filters
-                audioBlob = new Blob(audioChunks, { type: 'audio/mp4' });
+                // Use the browser's native MIME type so the server firewall doesn't block it
+                audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
                 const audioUrl = URL.createObjectURL(audioBlob);
                 
                 // Show the playback UI
@@ -118,53 +126,49 @@ function deleteRecording() {
 const form = document.getElementById('contact-form');
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop normal page reload
+    e.preventDefault(); 
     
     const submitBtn = document.getElementById('submit-btn');
     const submitText = document.getElementById('submit-text');
     const submitSpinner = document.getElementById('submit-spinner');
     
-    // Show Loading state
     submitBtn.disabled = true;
     submitText.innerText = "Sending Enquiry...";
     submitSpinner.classList.remove('hidden');
 
-    // Gather all text inputs and physical files
     const formData = new FormData(form);
     
-    // Append the recorded voice note if the user made one
+    // FIX 1: If no physical file was selected, remove the empty file field
+    const fileInput = document.getElementById('file-input');
+    if (fileInput.files.length === 0) {
+        formData.delete('attachment');
+    }
+    
+    // FIX 2: Append the audio with its true native extension
     if (audioBlob) {
-        // Changed filename to .mp4 to ensure higher compatibility with email servers
-        formData.append('voice_enquiry', audioBlob, 'voice_note.mp4');
+        formData.append('voice_enquiry', audioBlob, `voice_note.${nativeExtension}`);
     }
 
     try {
-        // Send data to Web3Forms
         const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: formData
         });
         
-        // Grab the exact response from the server
         const data = await response.json();
-        console.log("Server Response: ", data);
         
-        // If the server rejected it (400 error), show the exact reason
         if (response.status === 400 || !data.success) {
-            alert("Web3Forms rejected the submission. Reason: " + data.message);
-            
-            // Reset button state so you can try again
+            alert("Submission rejected. Reason: " + data.message);
             submitBtn.disabled = false;
             submitText.innerText = "Submit Enquiry";
             submitSpinner.classList.add('hidden');
             return;
         }
         
-        // If successful
+        // Success
         document.getElementById('success-overlay').classList.remove('hidden');
         document.getElementById('success-overlay').classList.add('flex');
         
-        // Reset Form and Audio completely
         form.reset();
         deleteRecording();
         document.getElementById('file-name-display').innerText = "Upload floor plans, AV specs, etc.";
@@ -179,7 +183,6 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// Logic to close the success overlay
 document.getElementById('close-success-btn').addEventListener('click', () => {
     document.getElementById('success-overlay').classList.add('hidden');
     document.getElementById('success-overlay').classList.remove('flex');
