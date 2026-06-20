@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuxBridge Tech | IT, AV & Automation</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Tailwind Custom Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -34,7 +30,6 @@
         }
     </script>
     
-    <!-- Restored CSS for the Glass Cards -->
     <style>
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -52,22 +47,14 @@
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        /* Fix for browser default audio player styling on dark mode */
-        audio {
-            filter: invert(90%) hue-rotate(180deg);
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body class="bg-brand-dark text-gray-200 antialiased selection:bg-brand-accent selection:text-white">
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Native Typographic Logo -->
                 <a href="#hero" class="flex-shrink-0 flex items-baseline text-2xl md:text-3xl tracking-tight transition-opacity hover:opacity-80 z-50">
                     <span class="font-bold text-white">Lu</span>
                     <span class="font-bold text-gray-400">x</span>
@@ -75,7 +62,6 @@
                     <span class="font-medium text-gray-400 ml-1.5 md:ml-2 tracking-normal">Tech</span>
                 </a>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#hero" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
@@ -85,7 +71,6 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu Button (Hamburger) -->
                 <div class="md:hidden flex items-center z-50">
                     <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2 transition-colors">
                         <i class="fa-solid fa-bars text-2xl"></i>
@@ -94,7 +79,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden glass-highlight border-t border-white/10 absolute w-full top-20 shadow-2xl bg-brand-dark/95 backdrop-blur-xl">
             <div class="px-6 py-6 space-y-4 flex flex-col text-center">
                 <a href="#hero" class="mobile-link block text-gray-300 hover:text-white hover:bg-white/5 px-3 py-3 rounded-lg text-lg font-medium transition-all">Home</a>
@@ -107,7 +91,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
@@ -135,7 +118,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-24 relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col md:flex-row gap-16 items-center">
@@ -168,7 +150,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-24 relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -177,7 +158,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- IT & Network -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-network-wired text-xl text-gray-200"></i>
@@ -195,7 +175,6 @@
                     </ul>
                 </div>
 
-                <!-- Automation -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-bolt text-xl text-gray-200"></i>
@@ -212,7 +191,6 @@
                     </ul>
                 </div>
 
-                <!-- Audio Visual -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-sliders text-xl text-gray-200"></i>
@@ -229,7 +207,6 @@
                     </ul>
                 </div>
 
-                <!-- Electrical & Lighting -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-lightbulb text-xl text-gray-200"></i>
@@ -245,7 +222,6 @@
                     </ul>
                 </div>
 
-                <!-- HVAC Systems -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-fan text-xl text-gray-200"></i>
@@ -261,7 +237,6 @@
                     </ul>
                 </div>
 
-                <!-- Building Management -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-building-shield text-xl text-gray-200"></i>
@@ -277,7 +252,6 @@
                     </ul>
                 </div>
 
-                <!-- Maintenance & AMC -->
                 <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 group lg:col-start-2">
                     <div class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-screwdriver-wrench text-xl text-gray-200"></i>
@@ -296,7 +270,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-24 border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row gap-16">
             
@@ -330,10 +303,8 @@
                 </div>
             </div>
 
-            <!-- Unified Contact Form Area -->
             <div class="md:w-1/2 relative">
                 
-                <!-- Success Message Overlay (Hidden initially) -->
                 <div id="success-overlay" class="hidden absolute inset-0 z-20 glass rounded-3xl flex-col items-center justify-center text-center p-8 bg-black/80 backdrop-blur-md">
                     <i class="fa-solid fa-circle-check text-5xl text-green-500 mb-4"></i>
                     <h3 class="text-2xl font-bold text-white mb-2">Enquiry Sent</h3>
@@ -341,16 +312,14 @@
                     <button type="button" id="close-success-btn" class="mt-6 px-6 py-2 rounded-full border border-white/20 hover:bg-white/10 transition-colors">Send Another</button>
                 </div>
 
-                <!-- Form (JS will handle submission, NO action attribute needed) -->
                 <form id="contact-form" class="glass p-8 rounded-3xl space-y-5">
                     
-                    <!-- Web3Forms Access Key -->
                     <input type="hidden" name="access_key" value="da7cdb18-dcf5-455e-8879-d6b6ca5183a7">
                     <input type="hidden" name="subject" value="New Project Enquiry from LuxBridge Tech Website">
 
                     <div class="mb-2">
                         <h4 class="text-xl font-semibold text-white mb-2">Send an Enquiry</h4>
-                        <p class="text-sm text-gray-400 font-light">Type your details below or record a quick voice note. <strong class="text-white font-normal">Any language is supported.</strong></p>
+                        <p class="text-sm text-gray-400 font-light">Please fill out the details below and we will be in touch shortly.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -369,63 +338,11 @@
                         <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="john@company.com">
                     </div>
 
-                    <!-- Text Area for Requirements -->
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gray-500 mb-2">Project Requirements</label>
-                        <textarea name="message" rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors resize-none" placeholder="Type the details of your project here..."></textarea>
+                        <textarea name="message" required rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors resize-none" placeholder="Type the details of your project here..."></textarea>
                     </div>
 
-                    <!-- File Upload Section -->
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-500 mb-2">Attach Files (Optional)</label>
-                        <div class="relative w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-400 hover:border-brand-accent/50 transition-colors cursor-pointer flex items-center group">
-                            <i class="fa-solid fa-paperclip mr-3 text-gray-500 group-hover:text-brand-accent transition-colors"></i>
-                            <span id="file-name-display" class="truncate">Upload floor plans, AV specs, etc.</span>
-                            <input type="file" id="file-input" name="attachment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".pdf,.doc,.docx,.jpg,.png,.zip">
-                        </div>
-                    </div>
-
-                    <!-- Voice Note Recorder Area -->
-                    <div>
-                        <label class="flex justify-between items-center text-xs uppercase tracking-wider text-gray-500 mb-2">
-                            <span>Or Record a Voice Note</span>
-                            <span id="record-status-label" class="text-brand-accent uppercase text-[10px] tracking-widest font-semibold">Ready</span>
-                        </label>
-                        
-                        <div class="w-full bg-black/40 border border-white/10 rounded-xl p-3 transition-all">
-                            
-                            <!-- Initial / Recording UI -->
-                            <div id="record-ui" class="flex items-center justify-between cursor-pointer group" onclick="toggleRecording()">
-                                <div class="flex items-center space-x-3">
-                                    <div id="mic-icon-bg" class="h-10 w-10 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20 group-hover:bg-red-500/20 transition-colors shadow-[0_0_10px_rgba(239,68,68,0.15)] group-hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                                        <i class="fa-solid fa-microphone text-red-500 text-sm"></i>
-                                    </div>
-                                    <span id="record-text" class="text-sm text-gray-400 font-light group-hover:text-white transition-colors">Tap to record message</span>
-                                </div>
-                                <!-- Fake Waveform -->
-                                <div id="fake-waveform" class="flex items-center space-x-1 opacity-40 group-hover:opacity-100 transition-opacity pr-2">
-                                    <div class="w-1 h-2 bg-gray-300 rounded-full"></div>
-                                    <div class="w-1 h-4 bg-gray-300 rounded-full"></div>
-                                    <div class="w-1 h-6 bg-brand-accent rounded-full"></div>
-                                    <div class="w-1 h-3 bg-gray-300 rounded-full"></div>
-                                    <div class="w-1 h-5 bg-brand-accent rounded-full"></div>
-                                    <div class="w-1 h-2 bg-gray-300 rounded-full"></div>
-                                </div>
-                            </div>
-
-                            <!-- Playback UI (Hidden initially) -->
-                            <div id="playback-ui" class="hidden flex-col space-y-3">
-                                <audio id="audio-player" controls class="w-full h-10 outline-none rounded-lg"></audio>
-                                <button type="button" onclick="deleteRecording()" class="text-xs text-red-400 hover:text-red-300 flex items-center space-x-1 w-max transition-colors">
-                                    <i class="fa-solid fa-trash"></i>
-                                    <span>Delete & Re-record</span>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Submit Button -->
                     <button type="submit" id="submit-btn" class="w-full bg-white text-black font-semibold rounded-xl px-4 py-3 hover:bg-gray-200 transition duration-300 mt-2 flex justify-center items-center">
                         <span id="submit-text">Submit Enquiry</span>
                         <i id="submit-spinner" class="fa-solid fa-circle-notch fa-spin ml-2 hidden"></i>
@@ -436,14 +353,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="border-t border-white/5 py-8 text-center">
         <p class="text-xs text-gray-600 tracking-wider">
             &copy; 2026 LuxBridge Tech. All rights reserved. Designed in Abu Dhabi.
         </p>
     </footer>
 
-    <!-- Custom Script -->
     <script src="script.js"></script>
 
 </body>
