@@ -70,7 +70,8 @@ async function toggleRecording() {
             };
             
             mediaRecorder.onstop = () => {
-                audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                // Packaging the audio as a generic MP4 audio file to bypass strict format filters
+                audioBlob = new Blob(audioChunks, { type: 'audio/mp4' });
                 const audioUrl = URL.createObjectURL(audioBlob);
                 
                 // Show the playback UI
@@ -133,8 +134,8 @@ form.addEventListener('submit', async (e) => {
     
     // Append the recorded voice note if the user made one
     if (audioBlob) {
-        // We package the blob as a file named 'voice_note.webm'
-        formData.append('voice_enquiry', audioBlob, 'voice_note.webm');
+        // Changed filename to .mp4 to ensure higher compatibility with email servers
+        formData.append('voice_enquiry', audioBlob, 'voice_note.mp4');
     }
 
     try {
@@ -144,25 +145,34 @@ form.addEventListener('submit', async (e) => {
             body: formData
         });
         
+        // Grab the exact response from the server
         const data = await response.json();
+        console.log("Server Response: ", data);
         
-        if (data.success) {
-            // Show Success Overlay
-            document.getElementById('success-overlay').classList.remove('hidden');
-            document.getElementById('success-overlay').classList.add('flex');
+        // If the server rejected it (400 error), show the exact reason
+        if (response.status === 400 || !data.success) {
+            alert("Web3Forms rejected the submission. Reason: " + data.message);
             
-            // Reset Form and Audio completely
-            form.reset();
-            deleteRecording();
-            document.getElementById('file-name-display').innerText = "Upload floor plans, AV specs, etc.";
-            document.getElementById('file-name-display').classList.remove('text-brand-accent');
-        } else {
-            alert("Something went wrong. Please check your internet connection and try again.");
+            // Reset button state so you can try again
+            submitBtn.disabled = false;
+            submitText.innerText = "Submit Enquiry";
+            submitSpinner.classList.add('hidden');
+            return;
         }
+        
+        // If successful
+        document.getElementById('success-overlay').classList.remove('hidden');
+        document.getElementById('success-overlay').classList.add('flex');
+        
+        // Reset Form and Audio completely
+        form.reset();
+        deleteRecording();
+        document.getElementById('file-name-display').innerText = "Upload floor plans, AV specs, etc.";
+        document.getElementById('file-name-display').classList.remove('text-brand-accent');
+        
     } catch (error) {
-        alert("Error sending message. Please try again.");
+        alert("A network error occurred. Please try again.");
     } finally {
-        // Reset button state
         submitBtn.disabled = false;
         submitText.innerText = "Submit Enquiry";
         submitSpinner.classList.add('hidden');
